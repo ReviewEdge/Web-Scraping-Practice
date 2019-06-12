@@ -1,0 +1,32 @@
+# import libraries
+from urllib.request import urlopen
+from bs4 import BeautifulSoup
+
+# specify the url
+#quote_page = urlopen("http://www.bloomberg.com/quote/SPX:IND")
+
+# query the website and return the html to the variable ‘page’
+page = urlopen("https://www.instagram.com/chautauqua.from.above/?hl=en")
+
+# parse the html using beautiful soup and store in variable `soup`
+soup = BeautifulSoup(page, "html.parser")
+
+# print(soup)
+
+
+# Take out the <div> of name and get its value
+name_box = soup.find("script",attrs={"type": "application/ld+json"})
+
+print(name_box)
+
+
+# strip() is used to remove starting and trailing
+name = name_box.text.strip()
+print(name)
+
+"""
+# get the index price
+price_box = soup.find("div", attrs={"class":"price"})
+price = price_box.text
+print(price)
+"""
